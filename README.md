@@ -1,6 +1,3 @@
-ZendSkeletonApplication
-=======================
-
 Introduction
 ------------
 This is a simple, skeleton application using the ZF2 MVC layer and module
@@ -75,3 +72,4 @@ project and you should be ready to go! It should look something like below:
             Allow from all
         </Directory>
     </VirtualHost>
+
