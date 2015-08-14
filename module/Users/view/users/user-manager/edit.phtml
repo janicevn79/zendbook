@@ -1,0 +1,12 @@
+<?php
+echo '<h1>Edit user</h1>';
+//$form= $this->form;
+$form->prepare();
+
+$form->setAttribute('action',$this->url('user-manager/default',array('controller'=>'user-manager','action'=>'process','id'=>$user_id)));
+$form->setAttribute('method','post');
+
+//var_dump($this->formCollection($form));exit;
+echo $this->form()->openTag($form);
+echo $this->formCollection($form);
+echo $this->form()->closeTag();

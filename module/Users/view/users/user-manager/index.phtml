@@ -1,0 +1,21 @@
+<h1>Welcome to Admin Module</h1>
+
+<table>
+<tr>
+	<th>user id</th>
+	<th>user name</th>
+	<th>user email</th>
+</tr>
+<?php foreach ($users as $row) :?>
+	<?php// var_dump($users);exit;?>
+	<tr>
+		<td><?php echo $row['users_id']?></td>
+		<td><?php echo $row['users_name']?></td>
+		<td><?php echo $row['users_email']?></td>
+		<td><a href="<?php echo $this->url('user/default',array('controller'=>'user-manager','action'=>'edit','id'=>$row['users_id']))?>">Update</a></td>
+		<td><a href="<?php echo $this->url('user/default',array('controller'=>'user-manager','action'=>'delete','id'=>$row['users_id']))?>" onclick="return confirm('Da li zelis stvarno da obrises?');">Delete</a></td>
+
+	</tr>
+<?php endforeach;?>
+</table>
+<a href="<?php echo $this->url('user/default',array('controller'=>'user-manager','action'=>'add'))?>">Add new user</a>

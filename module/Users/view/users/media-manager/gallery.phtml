@@ -1,0 +1,31 @@
+<h1>Gallery</h1>
+
+<?php if (!empty($myUploads)): ?>
+	
+	<?php foreach ($myUploads as $row) :?>
+		<section class="upload">
+			<h2><?php echo $this->escapeHtml($row['label']);?></h2>
+			<h4><?php echo $this->escapeHtml($row['filename']);?></h4>
+			<img src="../img/<?php echo $row['filename']//$this->url('media',array('action'=>'showImage', 'id' => $row['id'], 'subaction' => 'full'));?>" />
+		</section>
+
+	<?php endforeach;?>
+
+<?php endif;?>
+
+<a href="<?php echo $this->url('media');?>">&raquo; Show Gallery</a>
+// File: upload-form.phtml
+<?php $form->prepare(); // The correct enctype is set here 
+$form->setAttribute('action',$this->url('media',array('controller'=>' mediamanager','action'=>'process')));?>
+<?php echo $this->form()->openTag($form); ?>
+
+    <div class="form-element">
+        <?php $fileElement = $form->get('image-file'); ?>
+        <?php echo $this->formLabel($fileElement); ?>
+        <?php echo $this->formFile($fileElement); ?>
+        <?php echo $this->formElementErrors($fileElement); ?>
+    </div>
+
+    <button>Submit</button>
+
+<?php echo $this->form()->closeTag(); ?>

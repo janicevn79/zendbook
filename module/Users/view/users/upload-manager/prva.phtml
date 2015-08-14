@@ -1,0 +1,37 @@
+<h1>Welcome to Upload Module</h1>
+
+<?php if (!empty($myUploads)): ?>
+	<table>
+	<tr>
+		<th>labnel</th>
+		<th>filename</th>
+	</tr>
+	<?php foreach ($myUploads as $row) :?>
+		<tr>
+			<td><?php echo $row['label']?></td>
+			<td><?php echo $row['filename']?></td>
+			<td><a href="<?php echo $this->url('user/default',array('controller'=>'uploadmanager','action'=>'update','id'=>$row['user_id']))?>">Update</a></td>
+			<td><a href="<?php echo $this->url('user/default',array('controller'=>'uploadmanager','action'=>'download','id'=>$row['id']))?>">Download</a></td>
+			<td><a href="<?php echo $this->url('user/default',array('controller'=>'uploadmanager','action'=>'delete','id'=>$row['user_id']))?>" onclick="return confirm('Da lizelis stvarno da obrises?');">Delete</a></td>
+
+		</tr>
+	<?php endforeach;?>
+	</table>
+<?php endif;?>
+
+// File: upload-form.phtml
+<?php $form->prepare(); // The correct enctype is set here 
+$form->setAttribute('action',$this->url('user/default',array('controller'=>'uploadmanager','action'=>'process')));?>
+<?php echo $this->form()->openTag($form); ?>
+
+    <div class="form-element">
+        <?php $fileElement = $form->get('image-file'); ?>
+        <?php echo $this->formLabel($fileElement); ?>
+        <?php echo $this->formFile($fileElement); ?>
+        <?php echo $this->formElementErrors($fileElement); ?>
+    </div>
+
+    <button>Submit</button>
+
+<?php echo $this->form()->closeTag(); ?>
+
